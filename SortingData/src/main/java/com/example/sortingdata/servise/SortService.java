@@ -1,16 +1,16 @@
 package com.example.sortingdata.servise;
 
-import com.example.sortingdata.model.RequestExcludeDataDto;
-import com.example.sortingdata.model.ResponseDataDto;
-import com.example.sortingdata.model.ResponseObject;
-
 import java.util.List;
 
-public interface SortService {
+//First generic <R> responseDto claas from server;
+//Second generic <T> request from client side to server;
+public interface SortService<R,T> {
 
-    List<ResponseObject> transfer(RequestExcludeDataDto req);
+    //Create new Response data structure
+    List<R> constructResponseData (T request);
 
-    ResponseDataDto parse (RequestExcludeDataDto req);
+    List<R> sortByParameter(T reqData,List<R> resultList);
 
-    ResponseDataDto sortByReqParameter(RequestExcludeDataDto reqData, List<ResponseObject> resultList) throws NoSuchFieldException;
+    List<R> parse(T request);
+
 }

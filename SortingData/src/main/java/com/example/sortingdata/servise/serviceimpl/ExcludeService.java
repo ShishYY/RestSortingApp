@@ -1,24 +1,18 @@
 package com.example.sortingdata.servise.serviceimpl;
 
-import com.example.sortingdata.model.RequestExcludeDataDto;
-import com.example.sortingdata.model.ResponseObject;
+import com.example.sortingdata.model.ConditionDto;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Map;
 
 @Component
-public class ExcludeService {
+public class ExcludeService  {
 
-    public List<ResponseObject> exclude(RequestExcludeDataDto req, List<ResponseObject> resultList) {
-        Boolean tempBoolean = req.getCondition().getExclude().stream().findAny().get().getDisabled();
-        List<ResponseObject> removeList = new ArrayList<>();
-        resultList.forEach(result->{
-            if(result.getDisabled() == tempBoolean){
-                removeList.add(result);
-            }
-        });
-        removeList.forEach(resultList::remove) ;
-        return resultList;
+    public Map<String,Object> excludeFromData(ConditionDto condition,Map<String,Object> data){
+
+
+        return data;
+
     }
+
 }

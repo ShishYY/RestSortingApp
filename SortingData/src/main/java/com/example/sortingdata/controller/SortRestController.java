@@ -19,8 +19,7 @@ public class SortRestController {
 
 
     @PostMapping(value = "/sort")
-    public RequestObjectDto sorting(@RequestBody RequestObjectDto data){
-        sortService.parseAndSort(data);
-        return null;
+    public ResponseDataDto sorting(@RequestBody RequestObjectDto data){
+        return sortService.parseAndSort(data);
     }
 }

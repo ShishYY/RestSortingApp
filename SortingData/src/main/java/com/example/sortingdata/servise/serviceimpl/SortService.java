@@ -5,6 +5,9 @@ import com.example.sortingdata.model.RequestObjectDto;
 import com.example.sortingdata.model.ResponseDataDto;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 
@@ -20,23 +23,19 @@ public class SortService {
         this.excludeService = excludeService;
         this.includeService = includeService;
     }
-
+//Main module
     public ResponseDataDto parseAndSort(RequestObjectDto request){
         if(request != null){
             ConditionDto condition = request.getCondition();
-            Map<String,Object> data = request.getData().stream().findAny().orElse(null);
-
-
             if(condition.getExclude() != null){
-               data = excludeService.excludeFromData(condition,data);
+                List<Map<String,Object>> data = excludeService.excludeFromData(condition,request.getData());
                return sorter.sort(condition,data);
             }if(condition.getInclude() != null){
-
-
+               List<Map<String,Object>> data = includeService.includeToData(condition,request.getData());
+                return sorter.sort(condition,data);
             }
-
         }
-        return null;
+        throw new RuntimeException("Data from request incorrect");
     }
 
 

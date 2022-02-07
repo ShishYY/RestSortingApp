@@ -7,35 +7,32 @@ import java.util.*;
 @Component
 public class Sorter {
 
+    Comparator<Object> keyComparator = (o1, o2) -> {
+        if (o1 instanceof Comparable && o2 instanceof Comparable) {
+            return ((Comparable) o1).compareTo(o2);
+        }
+        return 0;
+    };
 
     public ResponseDataDto sort(ConditionDto condition, List<Map<String, Object>> data) {
         List<String> sortCondition = condition.getSortBy();
-        try {
+
+
+            Comparator<Map<String, Object>> comparator = null;
+
             for (String sortBy : sortCondition) {
-                if (sortBy.equals("rating")) {
-                    data.sort(integerComparator(sortBy));
-                }else{
-                    data.sort(stringComparator(sortBy));
+                if (comparator == null) {
+                    comparator = Comparator.comparing(map -> map.get(sortBy), keyComparator);
+                } else {
+                    comparator = comparator.thenComparing(map -> map.get(sortBy), keyComparator);
                 }
             }
-        } catch (NullPointerException e) {
-            throw new RuntimeException("No parameter for sorting");
-        }
+
+            if (comparator != null) {
+                data.sort(comparator);
+            }
+
         return new ResponseDataDto(data);
     }
 
-    public static Comparator<Map<String,Object>> integerComparator(String sortBy) {
-        return (a, b) -> {
-            Integer aTitle = (Integer) a.get(sortBy);
-            Integer bTitle = (Integer) b.get(sortBy);
-            return aTitle.compareTo(bTitle);
-        };
-    }
-    public static Comparator<Map<String,Object>> stringComparator(String sortBy){
-        return (a, b) -> {
-            String aTitle = (String) a.get(sortBy);
-            String bTitle = (String)  b.get(sortBy);
-            return aTitle.compareTo(bTitle);
-        };
-    }
 }

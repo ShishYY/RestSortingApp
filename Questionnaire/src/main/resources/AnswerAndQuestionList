@@ -1,0 +1,5 @@
+{"question":[{"id":"1","question":"What is your marital status?","questionAnswer":"0"},
+{"id":"2","question":"Are you planning on getting married next year?","questionAnswer":"Single"},
+{"id":"3","question":"How long have you been married?","questionAnswer":"Married"},
+{"id":"4","question":"Have you celebrated your one year anniversary?","questionAnswer":"More than a Year"}],
+"answer":[{"questionId":"1","answerText":"Single"},{"questionId":"1","answerText":"Married"},{"questionId":"2","answerText":"Yes"},{"questionId":"2","answerText":"No"},{"questionId":"3","answerText":"Less than a year"},{"questionId":"3","answerText":"More than a year"},{"questionId":4,"answerText":"Yes"},{"questionId":"4","answerText":"No"}]}

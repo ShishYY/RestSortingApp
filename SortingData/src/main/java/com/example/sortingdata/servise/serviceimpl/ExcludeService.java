@@ -12,7 +12,7 @@ public class ExcludeService {
 
     public List<Map<String, Object>> excludeFromData(ConditionDto condition, List<Map<String, Object>> data) {
         List<Map<String,Object>> result = new ArrayList<>();
-        for(Map<String,Object> exclude :condition.getExclude()){
+        for(Map<String,Object> exclude : condition.getExclude()){
             for(Map.Entry<String,Object> excludeEntry : exclude.entrySet()){
                 for(Map<String,Object> dataMap : data ){
                     if(dataMap.containsKey(excludeEntry.getKey())){

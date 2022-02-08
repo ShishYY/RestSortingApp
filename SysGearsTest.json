@@ -1,0 +1,180 @@
+{
+	"info": {
+		"_postman_id": "07979069-e769-4025-b294-7295d6f9290b",
+		"name": "SysGearsTest",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "convert",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"distance\": {\"unit\": \"m\", \"value\": 0.5}, \"convert_to\": \"ft\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8081/api/v1/convert",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"api",
+						"v1",
+						"convert"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Exclude",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "default",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"data\": [{\"user\": \"greg@mail.com\", \"rating\": 10, \"disabled\": false},\n{\"user\": \"greg@mail.com\", \"rating\": 100, \"disabled\": false},\n{\"user\": \"john@mail.com\", \"rating\": 25, \"disabled\": true}],\n\"condition\": {\"exclude\": [{\"rating\": 0}], \"sort_by\": [\"use\",\"rating\"]}}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8083/api/v1/sort",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8083",
+					"path": [
+						"api",
+						"v1",
+						"sort"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Include",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"data\": [{\"name\": \"John\", \"email\": \"john2@mail.com\"},\n{\"name\": \"John\", \"email\": \"john1@mail.com\"},\n{\"name\": \"Jane\", \"email\": \"jane@mail.com\"}],\n\"condition\": {\"include\": [{\"name\": \"John\"}], \"sort_by\": [\"email\"]}}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8083/api/v1/sort",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8083",
+					"path": [
+						"api",
+						"v1",
+						"sort"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "postquestion",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"question\":[{\"id\":\"1\",\"question\":\"What is your marital status?\",\"questionAnswer\":\"0\"},\n{\"id\":\"2\",\"question\":\"Are you planning on getting married next year?\",\"questionAnswer\":\"Single\"},\n{\"id\":\"3\",\"question\":\"How long have you been married?\",\"questionAnswer\":\"Married\"},\n{\"id\":\"4\",\"question\":\"Have you celebrated your one year anniversary?\",\"questionAnswer\":\"More than a Year\"}],\n\"answer\":[{\"questionId\":\"1\",\"answerText\":\"Single\"},{\"questionId\":\"1\",\"answerText\":\"Married\"},{\"questionId\":\"2\",\"answerText\":\"Yes\"},{\"questionId\":\"2\",\"answerText\":\"No\"},{\"questionId\":\"3\",\"answerText\":\"Less than a year\"},{\"questionId\":\"3\",\"answerText\":\"More than a Year\"},{\"questionId\":4,\"answerText\":\"Yes\"},{\"questionId\":\"4\",\"answerText\":\"No\"}]}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8084/api/v1/questionnaire",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8084",
+					"path": [
+						"api",
+						"v1",
+						"questionnaire"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "startAnswer",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8084/api/v1/questionnaire/answer/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8084",
+					"path": [
+						"api",
+						"v1",
+						"questionnaire",
+						"answer",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getAllPass",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8084/api/v1/questionnaire",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8084",
+					"path": [
+						"api",
+						"v1",
+						"questionnaire"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

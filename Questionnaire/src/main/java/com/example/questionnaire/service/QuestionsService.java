@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 @Service
 public class QuestionsService {
@@ -56,22 +55,10 @@ public class QuestionsService {
 
     public ResponseDto getAllPath(){
         if(questions == null){generateDefaultList();}
-        ResponseDto response = new ResponseDto();
-        for(QuestionDto questionDto : questions ){
-            if(response.getResult() == null && response.getPathNumber() == 0){
-                String question = questionDto.getQuestion();
-                String answer = answerList.stream().findFirst().get().getAnswerText();
-                putToResponse(question,answer,response);
-            }
-            for(Map<String,String> responseList : response.getResult()){
-                if(responseList.containsValue(questionDto.getQuestionAnswer())){
-                    String question = questionDto.getQuestion();
-                }
-            }
 
-        }
 
-        return response;
+
+        return null;
     }
 
     public AnswerAndQuestionDto putAnswer(String question,List<String> answer){
@@ -87,19 +74,4 @@ public class QuestionsService {
         answerList = defaultQuestionList.defaultList.getAnswerList();
     }
 
-    public ResponseDto putToResponse(String question,String answer,ResponseDto response){
-        Map<String, String> map = new HashMap<>();
-        if(response.getResult()!=null) {
-            map.put(question, answer);
-            response.getResult().add(map);
-            response.setPathNumber(response.getPathNumber() + 1);
-            return response;
-        }
-        List<Map<String, String>> answerQuestion = new ArrayList<>();
-        map.put(question,answer);
-        answerQuestion.add(map);
-        response.setResult(answerQuestion);
-        response.setPathNumber(response.getPathNumber() + 1);
-        return response;
-    }
 }

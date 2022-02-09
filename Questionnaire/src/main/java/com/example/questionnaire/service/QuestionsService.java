@@ -55,6 +55,8 @@ public class QuestionsService {
 
     public ResponseDto getAllPath(){
         if(questions == null){generateDefaultList();}
+        List<Map<QuestionDto,AnswerDto>> possiblePath = new ArrayList<>();
+        Integer counter = 0;
 
 
 
